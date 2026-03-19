@@ -2,7 +2,7 @@
 
 This example shows how to use a Google ADK agent with a Pydantic schema to extract a structured meeting summary from free-form meeting notes.
 
-The agent code is in [agent/agent.py](/Users/ktsoator/projects/openagent/adk-python/4-structured-outputs/agent/agent.py).
+The agent code is in [agent/agent.py](./agent/agent.py).
 
 ## What This Agent Returns
 
