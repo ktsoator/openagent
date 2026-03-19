@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from google.adk.agents.llm_agent import Agent
 from google.adk.models.lite_llm import LiteLlm
 from pydantic import AliasChoices, BaseModel, Field
@@ -11,7 +13,6 @@ class ActionItem(BaseModel):
     )
     deadline: str = Field(
         default="unknown",
-        validation_alias=AliasChoices("deadline", "due_date"),
         description="The deadline for the action item, or 'unknown' if not mentioned."
     )
 
@@ -32,23 +33,14 @@ class MeetingSummaryOutput(BaseModel):
     )
 
 
+PROMPT = (Path(__file__).with_name("prompt.md")).read_text(encoding="utf-8")
+
+
 root_agent = Agent(
     model=LiteLlm(model="ollama_chat/nemotron-3-super:cloud"),
     name="meeting_summary_agent",
     description="Extracts structured meeting summaries from free-form notes.",
-    instruction=(
-        "You are a meeting notes assistant. "
-        "Given raw meeting notes, extract a concise summary, the decisions made, "
-        "the action items, and any risks or blockers. "
-        "Respond only with JSON that matches the provided schema. "
-        "Use the exact field names summary, decisions, action_items, risks, "
-        "and for each action item use task, owner, deadline. "
-        "Never reply with plain text, markdown, or conversational phrases like "
-        "'You're welcome'. "
-        "If the input is not meeting notes or does not contain enough information, "
-        "still return valid JSON with summary set to a brief explanation and "
-        "decisions, action_items, and risks as empty arrays."
-    ),
+    instruction=PROMPT,
     output_schema=MeetingSummaryOutput,
     output_key="meeting_summary",
     tools=[],

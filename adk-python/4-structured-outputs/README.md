@@ -3,6 +3,7 @@
 This example shows how to use a Google ADK agent with a Pydantic schema to extract a structured meeting summary from free-form meeting notes.
 
 The agent code is in [agent/agent.py](./agent/agent.py).
+The prompt is stored in [agent/prompt.md](./agent/prompt.md).
 
 ## What This Agent Returns
 
