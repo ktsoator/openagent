@@ -2,7 +2,7 @@ from pathlib import Path
 
 from google.adk.agents.llm_agent import Agent
 from google.adk.models.lite_llm import LiteLlm
-from pydantic import AliasChoices, BaseModel, Field
+from pydantic import BaseModel, Field
 
 
 class ActionItem(BaseModel):

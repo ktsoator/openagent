@@ -28,7 +28,6 @@ Notes:
 
 - If `owner` is missing, it defaults to `"unknown"`.
 - If `deadline` is missing, it defaults to `"unknown"`.
-- `due_date` is also accepted and mapped to `deadline`.
 - If `decisions`, `action_items`, or `risks` are missing, they default to empty arrays.
 - The agent should always return JSON. Even for non-meeting input, it should return a valid fallback object instead of plain text.
 
